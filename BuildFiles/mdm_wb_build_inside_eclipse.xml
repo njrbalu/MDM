@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<project name="mdm_wb_build_inside_eclipse" default="all">
+	<description>
+
+    	Internal script that runs within Eclipse to import and build code and output a CBA file.
+										     		            
+    </description>
+
+	<property file="mdm_wb_build.properties"/>
+
+	<!-- OutputFolder is not available in the properties file but derived from the calling script -->
+	<property environment="env" />
+	<property name="OutputFolder" value="${env.OutputFolder}" />
+
+	<eclipse.convertPath resourcepath="/" property="workspace.root"/>
+
+	<!-- Set the default list of target steps to run, these can be individually enable/disabled in the properties file -->
+	<target name="all" depends="checkProperties, createServerRuntimeAndTargetPlatform, importProjects, workspaceBuild, copySQLs, copyWSDLs, exportCBAs">
+	</target>
+
+	<!-- ==========================================================================================
+		 Ensure all required properties are set -->
+	<target name="checkProperties" 
+		description="Fail build if properties required for this script are not defined">
+		<echo message="Start of target checkProperties"/>
+
+		<property name="PROPERTY_DOES_NOT_EXIST_STRING" value="The following property is not defined: "/>
+
+		<fail unless="workspace.root" message="${PROPERTY_DOES_NOT_EXIST_STRING}workspace.root"/>
+		<echo message="workspace.root=${workspace.root}"/>
+
+		<fail unless="OutputFolder" message="${PROPERTY_DOES_NOT_EXIST_STRING}OutputFolder"/>
+		<echo message="OutputFolder=${env.OutputFolder}"/>
+
+		<fail unless="WASHome" message="${PROPERTY_DOES_NOT_EXIST_STRING}WASHome"/>
+		<echo message="WASHome=${WASHome}"/>
+
+		<fail unless="WSRuntimeTypeId" message="${PROPERTY_DOES_NOT_EXIST_STRING}WSRuntimeTypeId"/>
+		<echo message="WSRuntimeTypeId=${WSRuntimeTypeId}"/>
+
+		<fail unless="AntContribHome" message="${PROPERTY_DOES_NOT_EXIST_STRING}AntContribHome"/>
+		<echo message="AntContribHome=${AntContribHome}"/>
+
+		<echo message="End of target checkProperties"/>
+	</target>
+
+	<!-- ========================================================================================== 
+		 The target platform in Eclipse needs to be configured to refer to 
+	     the WAS and MDM bundles against which customization code can be compiled. 
+	     The values of WSRuntimeTypeId, WASHome and runtimeId are set in the mdm_wb_build.properties file. -->
+	<target name="createServerRuntimeAndTargetPlatform" depends="checkProperties" if="createServerRuntimeAndTargetPlatform"
+		description="Create server runtime then set the target platform to it">
+		<echo message="Start of target createServerRuntimeAndTargetPlatform"/>
+	
+		
+		<createWSRuntime targetId="${runtimeId}" path="${WASHome}" typeId="${WSRuntimeTypeId}" />
+
+		<osgiSetPDETargetRuntime targetRuntimeId="${runtimeId}"/>
+
+		<echo message="End of target createServerRuntimeAndTargetPlatform"/>
+	</target>
+
+	<!-- ==========================================================================================
+		 Assuming that a workspace folder contains all of the source code and eclipse projects 
+	     to be built we can import the projects into the eclipse workspace. -->
+	<target name="importProjects" depends="checkProperties" if="importProjects"
+		description="Import MDM Development Projects etc into the workspace">
+		<echo message="Start of target importProjects"/>
+
+		<!-- Copy code to workspace directory on filesystem -->
+		<copy todir="${workspace.root}">
+			<fileset dir="${InputFolder}">
+				<filename name="**/*"/>
+			</fileset>
+		</copy>
+
+		<!-- Import projects to Eclipse - keep trying if not in fact a project -->
+		<projectImport projectName="*" projectLocation="${InputFolder}" failOnError="no" />
+
+		<echo message="End of target importProjects"/>
+	</target>
+
+	<!-- ========================================================================================== 
+		 Identify and generate code for MDM Development projects -->
+	<target name="generateCode" depends="checkProperties" if="generateCode"
+			description="Generate code for development projects">
+		<echo message="Start of target generateCode"/>
+
+		<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${AntContribHome}/ant-contrib.jar"/>
+
+		<!-- Loop through all Eclipse projects -->
+		<for param="ProjectDirectory">
+			<path>
+				<dirset dir="${workspace.root}" includes="*" />
+			</path>
+			<sequential>
+				<if>
+					<!-- Process those that look like MDM Development projects -->
+					
+						<available file="@{ProjectDirectory}/mdmgen.xml"/>
+					
+					<then>
+						<echo message="Generating code for MDM Development project: @{ProjectDirectory}"/>
+						<ant inheritAll="false" dir="@{ProjectDirectory}" antfile="mdmgen.xml">
+							<target name="init"/>
+							<target name="validate"/>
+							<!-- the mdmgen.xml file also contains an 'update' target, this target is not included in this list of targets for
+								 several reasons:
+								 1) Update relies on having a GUI available, and causes issues when running it headlessly; 
+								 2) There is no need to run update when importing projects;
+								 3) Update will be ran by the builder once the user starts working with the imported projects.
+							-->
+							<target name="sql"/>
+							<target name="implementation"/>
+							<target name="createReferenceModel"/>
+							<target name="webservices"/>
+							<target name="merge"/>
+							<target name="organiseResources"/>
+							<target name="organiseImports"/>
+							<target name="samples"/>
+						</ant>
+						<echo message="Done generating code for MDM Development project: @{ProjectDirectory}"/>
+					</then>
+					<else>
+						<echo message="Ignoring non-MDM Development project: @{ProjectDirectory}"/>
+					</else>
+				</if>
+			</sequential>
+		</for>
+
+		<echo message="End of target generateCode"/>
+	</target>
+
+	<!-- ==========================================================================================
+		 The workspace should be built, Java compiled, etc -->
+	<target name="workspaceBuild" depends="checkProperties" if="workspaceBuild"
+		description="Build the workspace">
+		<echo message="Start of target workspaceBuild"/>
+
+		<workspaceBuild failOnError="no"/>
+
+		<echo message="End of target workspaceBuild"/>
+	</target>
+
+	<!-- ==========================================================================================
+		 The Manifest files contained within a CBA directory normally contain all the information 
+	     required for a successful CBA export (bundle name, bundle version and project name). 
+	     We can determine and populate the values by looping through the manifest. -->
+	<typedef name="bundle" classname="com.ibm.etools.osgi.rad.ext.ant.task.OSGIAntBundle"/>
+
+	<target name="exportCBAs" depends="checkProperties" if="exportCBAs"
+		description="Export built CBA(s) to an output folder">
+		<echo message="Start of target exportCBAs"/>
+
+		<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${AntContribHome}/ant-contrib.jar"/>
+
+		<!-- Loop through all Eclipse projects -->
+		<for param="CBADir">
+			<path>
+				<dirset dir="${workspace.root}" includes="*" />
+			</path>
+			<sequential>
+				<if>
+					<!-- Process those that look like CBA projects -->
+					
+						<available file="@{CBADir}/META-INF/COMPOSITEBUNDLE.MF" />
+					
+					<then>
+						<!-- Using a variable because mfFile should be a mutable object, 
+							 because it gets updated on every iteration of the loop -->
+						<var name="mfFile" unset="true"/>
+						<!-- Get the required values (bundle name, bundle id and version) from the manifest -->
+						<loadfile property="mfFile" srcfile="@{CBADir}/META-INF/COMPOSITEBUNDLE.MF" />
+						
+						<!-- Bundle name, version and project need to be mutable, 
+							 as the values will be different for each manifest file -->
+						<var name="bundle.name" unset="true"/>
+						<var name="bundle.version" unset="true"/>
+						<var name="bundle.project" unset="true"/>
+						
+						<!-- Iterate through the manifest file -->
+						<for param="line" list="${mfFile}" delimiter="${line.separator}">
+							<sequential>
+								<!-- Find a line with the bundle name and put the name in 'bundle.name' -->
+								<propertyregex property="bundle.name" 
+        		        				   input="@{line}"
+										   override="true" 
+         		        	               regexp="bundle-name: (.*)"
+	        		        	           select="\1"
+	        		        	           casesensitive="false" />
+
+								<!-- Find a line with the bundle version and put the name in 'bundle.version' -->
+								<propertyregex property="bundle.version" 
+        		      					   input="@{line}"
+									       override="true" 
+	         		                       regexp="bundle-version: (.*)"
+		        		       	           select="\1"
+	        		           	           casesensitive="false" />
+
+								<!-- Find a line with the bundle project and put the name in 'bundle.project' -->
+								<propertyregex property="bundle.project" 
+	        		      				   input="@{line}"
+									       override="true" 
+	        		      	         	   regexp="compositebundle-content: (.*);"
+	        		      		           select="\1"
+	        		      		           casesensitive="false" />
+							</sequential>
+						</for>
+
+						<echo message="Exporting CBA for project: @{CBADir}"/>
+						
+						<!-- Export the current CBA project -->
+						<osgiCompositeBundleExport projectToExport="${bundle.name}"
+	        				exportFilePath="${OutputFolder}/CBAExport/${bundle.name}">
+							<bundle id="${bundle.project}" version="${bundle.version}"/>
+						</osgiCompositeBundleExport>
+						
+						<echo message="Done exporting CBA for project: @{CBADir}"/>
+							
+					</then>
+					<else>
+						<echo message="Ignoring non-CBA project: @{CBADir}" />
+					</else>
+				</if>
+			</sequential>
+		</for>
+
+		<echo message="End of target exportCBAs"/>
+	</target>
+	
+	<target name="copySQLs" depends="checkProperties" if="copyAllSQLs"
+		description="Copy setup/rollback sqls to be alongside the exported cba">
+		<echo message="Start of target copySQLs"/>
+
+		<!-- Copy all existing sql files to the 'sql' directory -->
+		<copy todir="${OutputFolder}/sql">
+			<fileset dir="${workspace.root}/MDMSharedResources/sql">
+				<filename name="**/*"/>
+			</fileset>
+		</copy>
+
+		<echo message="End of target copySQLs"/>
+	</target>
+	
+	<target name="copyWSDLs" depends="checkProperties" if="copyAllWsdls"
+		description="Copy wsdls in the workspace to be alongside sqls and the exported cbas">
+		<echo message="Start of target copyWSDLs"/>
+	
+		<!-- Copy all existing wsdl files to the 'wsdl' directory -->
+		<copy todir="${OutputFolder}/wsdl">
+			<fileset dir="${workspace.root}/MDMSharedResources/schema/full">
+				<filename name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<echo message="End of target copyWSDLs"/>
+	</target>
+</project>
