@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	IBM-MDMWB-1.0-[63e4e92bb7d207ca577b11c07f827279]
+-->
+<wsdl:definitions name="Extension" targetNamespace="http://test.com/Extension/port" 
+	xmlns:mdmport="http://test.com/Extension/port" 
+	xmlns:mdm="http://www.ibm.com/mdm/schema" 
+	xmlns:mdmwsdl="http://www.ibm.com/mdm/wsdl/schema" 
+	xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	
+	<jaxws:bindings>
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+    </jaxws:bindings>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://test.com/Extension/port" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:import namespace="http://www.ibm.com/mdm/schema" schemaLocation="PhysicalMDM.xsd" />
+		<xsd:import namespace="http://www.ibm.com/mdm/wsdl/schema" schemaLocation="MDMWSDLCommon.xsd" />
+
+			<xsd:element name="processingFault" type="mdmwsdl:ProcessingFaultType"/>
+
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="ProcessingFault">
+		<wsdl:part element="mdmport:processingFault" name="parameters"/>
+	</wsdl:message>
+
+
+	<wsdl:portType name="ExtensionPortType">
+	</wsdl:portType>
+	
+	<wsdl:binding name="ExtensionHttpBinding" type="mdmport:ExtensionPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+	</wsdl:binding>
+	
+	<wsdl:service name="ExtensionService">
+		<wsdl:port binding="mdmport:ExtensionHttpBinding" name="ExtensionPort">
+			<soap:address location="http://localhost:9080/MDMWSProvider/MDMService"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>
+		

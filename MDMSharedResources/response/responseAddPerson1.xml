@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TCRMService xmlns="http://www.ibm.com/mdm/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+	<ResponseControl>
+		<ResultCode>SUCCESS</ResultCode>
+		<ServiceTime>547</ServiceTime>
+		<DWLControl>
+			<requesterName>mdmadmin</requesterName>
+			<requesterLanguage>100</requesterLanguage>
+			<requesterLocale>en</requesterLocale>
+			<userRole>mdm_admin</userRole>
+			<requesterTimeZone>EST5EDT</requesterTimeZone>
+			<requestID>100185</requestID>
+		</DWLControl>
+	</ResponseControl>
+	<TxResponse>
+		<RequestType>addPerson</RequestType>
+		<TxResult>
+			<ResultCode>SUCCESS</ResultCode>
+		</TxResult>
+		<ResponseObject>
+			<TCRMPersonBObj>
+				<PartyId>177344349411773881</PartyId>
+				<DisplayName>Doll Partons</DisplayName>
+				<PreferredLanguageType>100</PreferredLanguageType>
+				<PreferredLanguageValue>English</PreferredLanguageValue>
+				<ComputerAccessType>1</ComputerAccessType>
+				<ComputerAccessValue>14.4K Baud</ComputerAccessValue>
+				<PartyType>P</PartyType>
+				<CreatedDate>2015-09-28 22:35:17.659</CreatedDate>
+				<StatementFrequencyType>1</StatementFrequencyType>
+				<StatementFrequencyValue>Annually</StatementFrequencyValue>
+				<ClientStatusType>1</ClientStatusType>
+				<ClientStatusValue>Customer</ClientStatusValue>
+				<AlertIndicator>N</AlertIndicator>
+				<SolicitationIndicator>N</SolicitationIndicator>
+				<ConfidentialIndicator>N</ConfidentialIndicator>
+				<ClientPotentialType>1</ClientPotentialType>
+				<ClientPotentialValue>High</ClientPotentialValue>
+				<ClientImportanceType>4</ClientImportanceType>
+				<ClientImportanceValue>Not Important</ClientImportanceValue>
+				<MandatorySearchDone>Y</MandatorySearchDone>
+				<PartyLastUpdateDate>2015-09-28 22:35:17.737</PartyLastUpdateDate>
+				<PartyLastUpdateUser>mdmadmin</PartyLastUpdateUser>
+				<PartyLastUpdateTxId>127544349411764414</PartyLastUpdateTxId>
+				<PersonPartyId>177344349411773881</PersonPartyId>
+				<BirthDate>1977-07-21 00:00:00.0</BirthDate>
+				<BirthPlaceType>1</BirthPlaceType>
+				<BirthPlaceValue>Afghanistan</BirthPlaceValue>
+				<GenderType>F</GenderType>
+				<UserIndicator>N</UserIndicator>
+				<AgeVerifiedWithType>2</AgeVerifiedWithType>
+				<AgeVerifiedWithValue>Passport</AgeVerifiedWithValue>
+				<HighestEducationType>3</HighestEducationType>
+				<HighestEducationValue>College Diploma</HighestEducationValue>
+				<CitizenshipType>1</CitizenshipType>
+				<CitizenshipValue>Afghanistan</CitizenshipValue>
+				<NumberOfChildren>2</NumberOfChildren>
+				<MaritalStatusType>2</MaritalStatusType>
+				<MaritalStatusValue>Single</MaritalStatusValue>
+				<PartyActiveIndicator>Y</PartyActiveIndicator>
+				<PersonLastUpdateDate>2015-09-28 22:35:17.737</PersonLastUpdateDate>
+				<PersonLastUpdateUser>mdmadmin</PersonLastUpdateUser>
+				<PersonLastUpdateTxId>127544349411764414</PersonLastUpdateTxId>
+								<TCRMExtension>
+					<ExtendedObject>XPersonBObjExt</ExtendedObject>
+					<XPersonBObjExt>
+						<CreditInfoBObj>
+							<ComponentID>1000027</ComponentID>
+							<CreditInfopkId>172944349411783256</CreditInfopkId>
+							<PartyId>177344349411773881</PartyId>
+							<CreditScore>785</CreditScore>
+							<CreditClass>AAA</CreditClass>
+							<CreditStatus>Good</CreditStatus>
+							<CreditInfoLastUpdateDate>2015-09-29 02:35:17.831</CreditInfoLastUpdateDate>
+							<CreditInfoLastUpdateUser>mdmadmin</CreditInfoLastUpdateUser>
+							<CreditInfoLastUpdateTxId>127544349411764414</CreditInfoLastUpdateTxId>
+							<DWLStatus>
+								<Status>0</Status>
+							</DWLStatus>
+						</CreditInfoBObj>
+					</XPersonBObjExt>
+				</TCRMExtension>
+
+				<TCRMPartyAddressBObj>
+					<PartyAddressIdPK>175044349411786391</PartyAddressIdPK>
+					<PartyId>177344349411773881</PartyId>
+					<AddressId>172944349411783273</AddressId>
+					<AddressUsageType>1</AddressUsageType>
+					<AddressUsageValue>Primary Residence</AddressUsageValue>
+					<StartDate>2001-06-11 00:00:00.0</StartDate>
+					<AddressGroupLastUpdateDate>2015-09-28 22:35:17.878</AddressGroupLastUpdateDate>
+					<AddressGroupLastUpdateUser>mdmadmin</AddressGroupLastUpdateUser>
+					<AddressGroupLastUpdateTxId>127544349411764414</AddressGroupLastUpdateTxId>
+					<LocationGroupLastUpdateDate>2015-09-28 22:35:17.862</LocationGroupLastUpdateDate>
+					<LocationGroupLastUpdateUser>mdmadmin</LocationGroupLastUpdateUser>
+					<LocationGroupLastUpdateTxId>127544349411764414</LocationGroupLastUpdateTxId>
+					<TCRMAddressBObj>
+						<AddressIdPK>172944349411783273</AddressIdPK>
+						<ResidenceType>2</ResidenceType>
+						<ResidenceValue>Detached House</ResidenceValue>
+						<AddressLineOne>1301 Ashford Pkwy</AddressLineOne>
+						<City>Atlanta</City>
+						<ZipPostalCode>30338</ZipPostalCode>
+						<ProvinceStateType>108</ProvinceStateType>
+						<ProvinceStateValue>ON</ProvinceStateValue>
+						<CountyCode>1</CountyCode>
+						<CountryType>31</CountryType>
+						<CountryValue>Canada</CountryValue>
+						<StandardFormatingIndicator>Y</StandardFormatingIndicator>
+						<StandardFormatingOverride>N</StandardFormatingOverride>
+						<LatitudeDegrees>180</LatitudeDegrees>
+						<LongitudeDegrees>90</LongitudeDegrees>
+						<AddressLastUpdateDate>2015-09-28 22:35:17.831</AddressLastUpdateDate>
+						<AddressLastUpdateUser>mdmadmin</AddressLastUpdateUser>
+						<AddressLastUpdateTxId>127544349411764414</AddressLastUpdateTxId>
+						<DWLStatus>
+							<Status>0</Status>
+						</DWLStatus>
+					</TCRMAddressBObj>
+					<DWLStatus>
+						<Status>0</Status>
+					</DWLStatus>
+				</TCRMPartyAddressBObj>
+				<TCRMPersonNameBObj>
+					<PersonNameIdPK>178444349411778594</PersonNameIdPK>
+					<NameUsageType>1</NameUsageType>
+					<NameUsageValue>Legal</NameUsageValue>
+					<PrefixType>14</PrefixType>
+					<PrefixValue>Mr.</PrefixValue>
+					<PrefixDescription>Mrs</PrefixDescription>
+					<GivenNameOne>Doll</GivenNameOne>
+					<StdGivenNameOne>Doll</StdGivenNameOne>
+					<LastName>Partons</LastName>
+					<StdLastName>Partons</StdLastName>
+					<PersonPartyId>177344349411773881</PersonPartyId>
+					<StartDate>2003-12-05 00:00:00.0</StartDate>
+					<PersonNameLastUpdateDate>2015-09-28 22:35:17.784</PersonNameLastUpdateDate>
+					<PersonNameLastUpdateUser>mdmadmin</PersonNameLastUpdateUser>
+					<PersonNameLastUpdateTxId>127544349411764414</PersonNameLastUpdateTxId>
+					<LastUpdatedBy>mdmadmin</LastUpdatedBy>
+					<LastUpdatedDate>2015-09-28 22:35:17.784</LastUpdatedDate>
+					<DWLStatus>
+						<Status>0</Status>
+					</DWLStatus>
+				</TCRMPersonNameBObj>
+				<AddPartyStatus>2</AddPartyStatus>
+				<SearchPartyDone>Y</SearchPartyDone>
+				<DWLStatus>
+					<Status>0</Status>
+				</DWLStatus>
+			</TCRMPersonBObj>
+		</ResponseObject>
+	</TxResponse>
+</TCRMService>

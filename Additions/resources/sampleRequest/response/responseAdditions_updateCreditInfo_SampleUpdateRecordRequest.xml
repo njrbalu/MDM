@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TCRMService xmlns="http://www.ibm.com/mdm/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+	<ResponseControl>
+		<ResultCode>SUCCESS</ResultCode>
+		<ServiceTime>78</ServiceTime>
+		<DWLControl>
+			<requesterName>mdmadmin</requesterName>
+			<requesterLanguage>100</requesterLanguage>
+			<requesterLocale>en</requesterLocale>
+			<userRole>mdm_admin</userRole>
+			<requesterTimeZone>EST5EDT</requesterTimeZone>
+			<requestID>10015</requestID>
+		</DWLControl>
+	</ResponseControl>
+	<TxResponse>
+		<RequestType>updateCreditInfo</RequestType>
+		<TxResult>
+			<ResultCode>SUCCESS</ResultCode>
+		</TxResult>
+		<ResponseObject>
+			<CreditInfoBObj>
+				<ComponentID>1000027</ComponentID>
+				<CreditInfopkId>634344349404198652</CreditInfopkId>
+				<PartyId>639944349404142388</PartyId>
+				<CreditScore>800</CreditScore>
+				<CreditClass>AAAA</CreditClass>
+				<CreditStatus>Great</CreditStatus>
+				<CreditInfoLastUpdateDate>2015-09-29 10:25:54.875</CreditInfoLastUpdateDate>
+				<CreditInfoLastUpdateUser>mdmadmin</CreditInfoLastUpdateUser>
+				<CreditInfoLastUpdateTxId>265944353675481325</CreditInfoLastUpdateTxId>
+				<DWLStatus>
+					<Status>0</Status>
+				</DWLStatus>
+			</CreditInfoBObj>
+		</ResponseObject>
+	</TxResponse>
+</TCRMService>

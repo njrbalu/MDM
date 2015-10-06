@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="eager">
+
+    <reference id="configManager" interface="com.ibm.mdm.server.config.api.ConfigManager" activation="eager" timeout="60000"/>
+
+    <service id="XSDFinderService" interface="com.dwl.base.xml.XSDFinder" activation="lazy">
+        <service-properties>
+            <entry key="CoreSchema" value="false"/>
+        </service-properties>
+        <bean class="com.dwl.base.xml.XSDFinderImpl">
+            <property name="bpContainer" ref="blueprintContainer"/>
+            <property name="bundle" ref="blueprintBundle"/>
+        </bean>
+    </service>
+
+
+    <service id="Controller.AdditionsTxn" interface="com.test.additions.interfaces.AdditionsTxn">
+        <service-properties>
+            <entry key="osgi.jndi.service.name">
+                <list>
+                    <value>addCreditInfo</value>
+                    <value>updateCreditInfo</value>
+                </list>
+            </entry>
+        </service-properties>
+        <bean class="com.test.additions.controller.AdditionsTxnBean" />
+    </service>
+    
+    <service id="Controller.Additions" interface="com.test.additions.interfaces.AdditionsFinder">
+        <service-properties>
+            <entry key="osgi.jndi.service.name">
+                <list>
+                    <value>getCreditInfo</value>
+                    <value>getCreditInfobyPartyId</value>
+                </list>
+            </entry>
+        </service-properties>
+        <bean class="com.test.additions.controller.AdditionsFinderImpl" />
+    </service>
+    
+  
+
+  
+
+    <service id="BObjQueryFactoryService" interface="com.ibm.mdm.common.servicefactory.api.BObjQueryFactory" ranking="10"> 
+      <bean class="com.ibm.mdm.common.servicefactory.BObjQueryFactoryImpl" >
+        <argument>
+          <map>
+            <entry key="com.test.additions.bobj.query.AdditionsModuleBObjQueryFactory">
+              <bean class="com.test.additions.bobj.query.AdditionsModuleBObjQueryFactoryImpl"/>
+            </entry>
+          </map>
+        </argument>
+        <argument ref="blueprintBundle"/>
+      </bean>
+    </service>
+    
+    <service id="BObjPersistenceFactoryService" interface="com.ibm.mdm.common.servicefactory.api.BObjPersistenceFactory" ranking="10"> 
+      <bean class="com.ibm.mdm.common.servicefactory.BObjPersistenceFactoryImpl" >
+        <argument>
+          <map>
+            <entry key="com.test.additions.bobj.query.AdditionsModuleBObjPersistenceFactory">
+              <bean class="com.test.additions.bobj.query.AdditionsModuleBObjQueryFactoryImpl"/>
+            </entry>
+          </map>
+        </argument>
+        <argument ref="blueprintBundle"/>
+      </bean>
+    </service>
+
+    <service id="BObjFactoryService" interface="com.ibm.mdm.common.bobj.api.BObjFactoryService" ranking="10">
+        <service-properties>
+            <entry key="business.object">
+                <list>
+                    <value>CreditInfoBObj</value>
+                </list>
+            </entry>
+        </service-properties>
+        <bean class="com.ibm.mdm.common.bobj.BObjFactoryServiceImpl">
+            <argument>
+                <map key-type="java.lang.String" value-type="java.lang.Class">
+                    <entry key="CreditInfoBObj" value="com.test.additions.component.CreditInfoBObj"/>
+                </map>
+            </argument>
+            <argument ref="blueprintBundle"/>
+        </bean>
+    </service>
+
+
+    <service id="ComponentFactoryService" interface="com.ibm.mdm.common.component.api.ComponentFactoryService">
+        <service-properties>
+            <entry key="business.component">
+                <list>
+                    <value>additions_component</value>
+                </list>
+            </entry>
+        </service-properties>
+        <bean class="com.ibm.mdm.common.component.ComponentFactoryServiceImpl">
+            <argument>
+                <map>
+                    <entry key="additions_component">
+                      <bean class="com.test.additions.component.AdditionsComponent"/>
+                    </entry>
+                </map>
+            </argument>
+            <argument ref="blueprintContainer"/>
+        </bean>
+    </service>
+
+
+</blueprint>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<TCRMService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ibm.com/mdm/schema" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+  <RequestControl>
+    <requestID>6984359384840104960</requestID>
+    <DWLControl>
+      <requesterName>mdmadmin</requesterName>
+      <requesterLocale>en</requesterLocale>
+      <clientSystemName>DataStewardship</clientSystemName>
+      <userRole>mdm_admin</userRole>
+    </DWLControl>
+  </RequestControl>
+  <TCRMTx>
+    <TCRMTxType>comparativePreviewCollapseMultipleParties</TCRMTxType>
+    <TCRMTxObject>TCRMConsolidatedPartyBObj</TCRMTxObject>
+    <TCRMObject>
+      <TCRMConsolidatedPartyBObj>
+        <TCRMPartyListBObj>
+          <TCRMPartyBObj>
+            <PartyId>177344349411773881</PartyId>
+          </TCRMPartyBObj>
+          <TCRMPartyBObj>
+            <PartyId>639944349404142388</PartyId>
+          </TCRMPartyBObj>
+        </TCRMPartyListBObj>
+      </TCRMConsolidatedPartyBObj>
+    </TCRMObject>
+  </TCRMTx>
+</TCRMService>

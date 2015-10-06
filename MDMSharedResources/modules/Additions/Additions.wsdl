@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	IBM-MDMWB-1.0-[d8d446ff6fcb768ad56a2db044945c4c]
+-->
+<wsdl:definitions name="Additions" targetNamespace="http://additions.test.com/Additions/port" 
+	xmlns:mdmport="http://additions.test.com/Additions/port" 
+	xmlns:mdm="http://www.ibm.com/mdm/schema" 
+	xmlns:mdmwsdl="http://www.ibm.com/mdm/wsdl/schema" 
+	xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	
+	<jaxws:bindings>
+        <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+    </jaxws:bindings>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://additions.test.com/Additions/port" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<xsd:import namespace="http://www.ibm.com/mdm/schema" schemaLocation="PhysicalMDM.xsd" />
+		<xsd:import namespace="http://www.ibm.com/mdm/wsdl/schema" schemaLocation="MDMWSDLCommon.xsd" />
+
+			<xsd:complexType name="GetCreditInfoOutputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:ResponseControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:TxResult"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GetCreditInfobyPartyIdOutputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:ResponseControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:TxResult"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AddCreditInfoInputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:RequestControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="AddCreditInfoOutputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:ResponseControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:TxResult"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="UpdateCreditInfoInputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:RequestControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="UpdateCreditInfoOutputType">
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:ResponseControl"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:TxResult"/>
+				<xsd:element maxOccurs="1" minOccurs="1" ref="mdm:CreditInfoBObj"/>
+			</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="getCreditInfo" type="mdmwsdl:TCRMInquiryInputType"/>
+			<xsd:element name="getCreditInfoResponse" type="mdmport:GetCreditInfoOutputType"/>
+			<xsd:element name="getCreditInfobyPartyId" type="mdmwsdl:TCRMInquiryInputType"/>
+			<xsd:element name="getCreditInfobyPartyIdResponse" type="mdmport:GetCreditInfobyPartyIdOutputType"/>
+			<xsd:element name="addCreditInfo" type="mdmport:AddCreditInfoInputType"/>
+			<xsd:element name="addCreditInfoResponse" type="mdmport:AddCreditInfoOutputType"/>
+			<xsd:element name="updateCreditInfo" type="mdmport:UpdateCreditInfoInputType"/>
+			<xsd:element name="updateCreditInfoResponse" type="mdmport:UpdateCreditInfoOutputType"/>
+			<xsd:element name="processingFault" type="mdmwsdl:ProcessingFaultType"/>
+
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="ProcessingFault">
+		<wsdl:part element="mdmport:processingFault" name="parameters"/>
+	</wsdl:message>
+
+	<wsdl:message name="GetCreditInfoRequest">
+		<wsdl:part element="mdmport:getCreditInfo" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="GetCreditInfoResponse">
+		<wsdl:part element="mdmport:getCreditInfoResponse" name="parameters"/>
+	</wsdl:message>
+	
+	<wsdl:message name="GetCreditInfobyPartyIdRequest">
+		<wsdl:part element="mdmport:getCreditInfobyPartyId" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="GetCreditInfobyPartyIdResponse">
+		<wsdl:part element="mdmport:getCreditInfobyPartyIdResponse" name="parameters"/>
+	</wsdl:message>
+	
+	<wsdl:message name="AddCreditInfoRequest">
+		<wsdl:part element="mdmport:addCreditInfo" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="AddCreditInfoResponse">
+		<wsdl:part element="mdmport:addCreditInfoResponse" name="parameters"/>
+	</wsdl:message>
+	
+	<wsdl:message name="UpdateCreditInfoRequest">
+		<wsdl:part element="mdmport:updateCreditInfo" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateCreditInfoResponse">
+		<wsdl:part element="mdmport:updateCreditInfoResponse" name="parameters"/>
+	</wsdl:message>
+	
+
+	<wsdl:portType name="AdditionsPortType">
+		<wsdl:operation name="getCreditInfo">
+			<wsdl:input message="mdmport:GetCreditInfoRequest"/>
+			<wsdl:output message="mdmport:GetCreditInfoResponse"/>
+			<wsdl:fault message="mdmport:ProcessingFault" name="ProcessingFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getCreditInfobyPartyId">
+			<wsdl:input message="mdmport:GetCreditInfobyPartyIdRequest"/>
+			<wsdl:output message="mdmport:GetCreditInfobyPartyIdResponse"/>
+			<wsdl:fault message="mdmport:ProcessingFault" name="ProcessingFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addCreditInfo">
+			<wsdl:input message="mdmport:AddCreditInfoRequest"/>
+			<wsdl:output message="mdmport:AddCreditInfoResponse"/>
+			<wsdl:fault message="mdmport:ProcessingFault" name="ProcessingFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateCreditInfo">
+			<wsdl:input message="mdmport:UpdateCreditInfoRequest"/>
+			<wsdl:output message="mdmport:UpdateCreditInfoResponse"/>
+			<wsdl:fault message="mdmport:ProcessingFault" name="ProcessingFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="AdditionsHttpBinding" type="mdmport:AdditionsPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getCreditInfo">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ProcessingFault">
+				<soap:fault name="ProcessingFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCreditInfobyPartyId">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ProcessingFault">
+				<soap:fault name="ProcessingFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addCreditInfo">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ProcessingFault">
+				<soap:fault name="ProcessingFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateCreditInfo">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ProcessingFault">
+				<soap:fault name="ProcessingFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<wsdl:service name="AdditionsService">
+		<wsdl:port binding="mdmport:AdditionsHttpBinding" name="AdditionsPort">
+			<soap:address location="http://localhost:9080/MDMWSProvider/MDMService"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>
+		

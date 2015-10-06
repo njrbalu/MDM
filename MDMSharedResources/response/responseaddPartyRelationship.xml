@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TCRMService xmlns="http://www.ibm.com/mdm/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+	<ResponseControl>
+		<ResultCode>SUCCESS</ResultCode>
+		<ServiceTime>2187</ServiceTime>
+		<DWLControl>
+			<requesterName>mdmadmin</requesterName>
+			<requesterLanguage>100</requesterLanguage>
+			<requesterLocale>en</requesterLocale>
+			<userRole>mdm_admin</userRole>
+			<requesterTimeZone>EST5EDT</requesterTimeZone>
+			<requestID>10015</requestID>
+		</DWLControl>
+	</ResponseControl>
+	<TxResponse>
+		<RequestType>addPartyRelationship</RequestType>
+		<TxResult>
+			<ResultCode>SUCCESS</ResultCode>
+		</TxResult>
+		<ResponseObject>
+			<TCRMPartyRelationshipBObj>
+				<PartyRelationshipIdPK>282844359137230364</PartyRelationshipIdPK>
+				<RelationshipType>1</RelationshipType>
+				<RelationshipValue>Party 1 is the spouse of party 2</RelationshipValue>
+				<RelationshipFromValue>100100</RelationshipFromValue>
+				<RelationshipToValue>911111111</RelationshipToValue>
+				<StartDate>2015-09-30 01:36:12.302</StartDate>
+				<PartyRelationshipLastUpdateDate>2015-09-30 01:36:12.302</PartyRelationshipLastUpdateDate>
+				<PartyRelationshipLastUpdateUser>mdmadmin</PartyRelationshipLastUpdateUser>
+				<PartyRelationshipLastUpdateTxId>864344359137096075</PartyRelationshipLastUpdateTxId>
+				<RelationshipFromPartyId>911111111</RelationshipFromPartyId>
+				<RelationshipToPartyId>100100</RelationshipToPartyId>
+				<RelationshipToPartyName>Vanessa Dana</RelationshipToPartyName>
+				<DWLStatus>
+					<Status>0</Status>
+				</DWLStatus>
+			</TCRMPartyRelationshipBObj>
+		</ResponseObject>
+	</TxResponse>
+</TCRMService>

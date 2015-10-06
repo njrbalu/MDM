@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdm:MDMModule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mdm="http://www.ibm.com/xmlns/prod/mdm/tools/model/core_v6.ecore" name="Extension" customNature="module" serviceNamespace="http://test.com" implPackageName="com.test" startId="1010000" MDMApplication="mdm://MDMSharedResources#/" domain="Additions">
+  <MDMPackage name="Extension" id="1"/>
+</mdm:MDMModule>

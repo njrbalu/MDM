@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TCRMService xmlns="http://www.ibm.com/mdm/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+	<ResponseControl>
+		<ResultCode>SUCCESS</ResultCode>
+		<ServiceTime>7909</ServiceTime>
+		<DWLControl>
+			<requesterName>mdmadmin</requesterName>
+			<requesterLanguage>100</requesterLanguage>
+			<requesterLocale>en</requesterLocale>
+			<userRole>mdm_admin</userRole>
+			<requesterTimeZone>EST5EDT</requesterTimeZone>
+			<requestID>100185</requestID>
+		</DWLControl>
+	</ResponseControl>
+	<TxResponse>
+		<RequestType>updatePerson</RequestType>
+		<TxResult>
+			<ResultCode>SUCCESS</ResultCode>
+		</TxResult>
+		<ResponseObject>
+			<TCRMPersonBObj>
+				<PartyId>100100</PartyId>
+				<DisplayName>John Doe</DisplayName>
+				<PreferredLanguageType>100</PreferredLanguageType>
+				<PreferredLanguageValue>English</PreferredLanguageValue>
+				<ComputerAccessType>1</ComputerAccessType>
+				<ComputerAccessValue>14.4K Baud</ComputerAccessValue>
+				<PartyType>P</PartyType>
+				<CreatedDate>2013-11-14 12:44:03.52</CreatedDate>
+				<StatementFrequencyType>1</StatementFrequencyType>
+				<StatementFrequencyValue>Annually</StatementFrequencyValue>
+				<ClientStatusType>1</ClientStatusType>
+				<ClientStatusValue>Customer</ClientStatusValue>
+				<AlertIndicator>N</AlertIndicator>
+				<SolicitationIndicator>N</SolicitationIndicator>
+				<ConfidentialIndicator>N</ConfidentialIndicator>
+				<ClientPotentialType>1</ClientPotentialType>
+				<ClientPotentialValue>High</ClientPotentialValue>
+				<ClientImportanceType>4</ClientImportanceType>
+				<ClientImportanceValue>Not Important</ClientImportanceValue>
+				<PartyLastUpdateDate>2013-11-14 12:44:06.239</PartyLastUpdateDate>
+				<PartyLastUpdateUser>mdmadmin</PartyLastUpdateUser>
+				<PartyLastUpdateTxId>486538445104344346</PartyLastUpdateTxId>
+				<PersonPartyId>100100</PersonPartyId>
+				<BirthDate>1962-07-23 00:00:00.0</BirthDate>
+				<BirthPlaceType>185</BirthPlaceType>
+				<BirthPlaceValue>United States of America</BirthPlaceValue>
+				<GenderType>M</GenderType>
+				<UserIndicator>N</UserIndicator>
+				<AgeVerifiedWithType>2</AgeVerifiedWithType>
+				<AgeVerifiedWithValue>Passport</AgeVerifiedWithValue>
+				<HighestEducationType>3</HighestEducationType>
+				<HighestEducationValue>College Diploma</HighestEducationValue>
+				<CitizenshipType>185</CitizenshipType>
+				<CitizenshipValue>United States of America</CitizenshipValue>
+				<NumberOfChildren>1</NumberOfChildren>
+				<MaritalStatusType>1</MaritalStatusType>
+				<MaritalStatusValue>Married</MaritalStatusValue>
+				<PartyActiveIndicator>Y</PartyActiveIndicator>
+				<PersonLastUpdateDate>2013-11-14 12:44:06.598</PersonLastUpdateDate>
+				<PersonLastUpdateUser>mdmadmin</PersonLastUpdateUser>
+				<PersonLastUpdateTxId>486538445104344346</PersonLastUpdateTxId>
+								<TCRMExtension>
+					<ExtendedObject>XPersonBObjExt</ExtendedObject>
+					<XPersonBObjExt>
+						<CreditInfoBObj>
+							<ComponentID>1000027</ComponentID>
+							<CreditInfopkId>472044323783978256</CreditInfopkId>
+							<PartyId>100100</PartyId>
+							<CreditScore>775</CreditScore>
+							<CreditClass>AAAA</CreditClass>
+							<CreditStatus>Good</CreditStatus>
+							<CreditInfoLastUpdateDate>2015-09-26 06:01:03.462</CreditInfoLastUpdateDate>
+							<CreditInfoLastUpdateUser>mdmadmin</CreditInfoLastUpdateUser>
+							<CreditInfoLastUpdateTxId>308144324725703576</CreditInfoLastUpdateTxId>
+							<DWLStatus>
+								<Status>0</Status>
+							</DWLStatus>
+						</CreditInfoBObj>
+					</XPersonBObjExt>
+				</TCRMExtension>
+
+				<DWLStatus>
+					<Status>5</Status>
+					<DWLError>
+						<ComponentType>99</ComponentType>
+						<ErrorMessage>The data submitted already exists on the database; no update applied.</ErrorMessage>
+						<ErrorType>DRECERR</ErrorType>
+						<LanguageCode>100</LanguageCode>
+						<ReasonCode>603</ReasonCode>
+						<Severity>5</Severity>
+						<SeverityValue>Warning</SeverityValue>
+					</DWLError>
+				</DWLStatus>
+			</TCRMPersonBObj>
+		</ResponseObject>
+	</TxResponse>
+</TCRMService>

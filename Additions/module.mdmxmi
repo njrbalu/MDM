@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdm:MDMModule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdm="http://www.ibm.com/xmlns/prod/mdm/tools/model/core_v6.ecore" name="Additions" customNature="module" serviceNamespace="http://additions.test.com" implPackageName="com.test.additions" MDMApplication="mdm://MDMSharedResources#/">
+  <MDMPackage name="Additions" id="1">
+    <members xsi:type="mdm:MDMEntity" name="CreditInfo" id="2">
+      <MDMProperty xsi:type="mdm:MDMAttribute" id="3" messageKey="CoreUtils_pkId" type="Long">
+        <MDMPersistenceDetails primaryKey="true"/>
+        <MDMErrorReason id="4" messageKey="CoreUtils_PropertyNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.FVERR"/>
+      </MDMProperty>
+      <MDMProperty xsi:type="mdm:MDMReference" name="PartyId" id="15" referenceType="mdm://Party#//Party/@members.Person/@members.Person">
+        <MDMPersistenceDetails databaseFieldName="CONT_ID"/>
+        <MDMErrorReason id="16" messageKey="CoreUtils_PropertyNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.FVERR"/>
+      </MDMProperty>
+      <MDMProperty xsi:type="mdm:MDMAttribute" name="CreditScore" id="17" type="Integer">
+        <MDMPersistenceDetails databaseFieldName="CREDIT_SCORE"/>
+        <MDMErrorReason id="18" messageKey="CoreUtils_PropertyNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.FVERR"/>
+      </MDMProperty>
+      <MDMProperty xsi:type="mdm:MDMAttribute" name="CreditClass" id="19">
+        <MDMPersistenceDetails databaseFieldName="CREDIT_CLASS"/>
+        <MDMErrorReason id="20" messageKey="CoreUtils_PropertyNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.FVERR"/>
+        <MDMAttributeConstraints xsi:type="mdm:MDMStringAttributeConstraints" stringLength="30"/>
+      </MDMProperty>
+      <MDMProperty xsi:type="mdm:MDMAttribute" name="CreditStatus" id="21">
+        <MDMPersistenceDetails databaseFieldName="CREDIT_STATUS"/>
+        <MDMErrorReason id="22" messageKey="CoreUtils_PropertyNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.FVERR"/>
+        <MDMAttributeConstraints xsi:type="mdm:MDMStringAttributeConstraints" stringLength="20"/>
+      </MDMProperty>
+      <MDMErrorReason id="5" messageKey="CoreUtils_ImageNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.DIERR"/>
+      <MDMGetRecord id="6" messageKey="CoreUtils_getRecord" queryParameters="#//Additions/@members.CreditInfo/@MDMProperty.CreditInfopkId">
+        <MDMErrorReason id="9" messageKey="CoreUtils_ReadErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+        <MDMErrorReason id="10" messageKey="CoreUtils_IdNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+        <MDMErrorReason id="11" messageKey="CoreUtils_InvalidDateErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+      </MDMGetRecord>
+      <MDMGetRecord name="getCreditInfobyPartyId" id="23" queryParameters="#//Additions/@members.CreditInfo/@MDMProperty.PartyId">
+        <MDMErrorReason id="24" messageKey="CoreUtils_ReadErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+        <MDMErrorReason id="25" messageKey="CoreUtils_IdNullErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+        <MDMErrorReason id="26" messageKey="CoreUtils_InvalidDateErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.READERR"/>
+      </MDMGetRecord>
+      <MDMAddRecord id="7">
+        <MDMErrorReason id="12" messageKey="CoreUtils_InsertErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.INSERR"/>
+        <MDMErrorReason id="13" messageKey="CoreUtils_DupPKErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.DKERR"/>
+      </MDMAddRecord>
+      <MDMUpdateRecord id="8">
+        <MDMErrorReason id="14" messageKey="CoreUtils_UpdateErr" errorType="mdm://MDMSharedResources#//@MDMErrorTypeCode.UPDERR"/>
+      </MDMUpdateRecord>
+    </members>
+  </MDMPackage>
+</mdm:MDMModule>

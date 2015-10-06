@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="eager">
+
+    <reference id="configManager" interface="com.ibm.mdm.server.config.api.ConfigManager" activation="eager" timeout="60000"/>
+
+    <service id="ExternalRuleLocatorService" interface="com.dwl.base.externalrule.RuleLocator" ranking="10">
+    <service-properties>
+		 <entry key="rule.java.impl">
+			<list>
+				<value>com.test.externalrules.CollapseMultiplePartiesRule</value>
+			</list>
+    	</entry>
+    </service-properties>
+        <bean class="com.dwl.base.externalrule.RuleLocatorImpl">
+            <property name="bpBundle" ref="blueprintBundle"/>
+            <argument>
+            	<list>
+            		<bean class="com.test.externalrules.CollapseMultiplePartiesRule"/>
+            	</list>
+            </argument>
+        </bean>
+    </service>
+    
+    
+    <service id="ConverterFactoryService.PersonDerivedDataConverter.Match" interface="com.ibm.mdm.common.converter.ConverterFactoryService" ranking="10">
+		 <service-properties>
+			<entry key="object.to.convert" value="com.dwl.tcrm.coreParty.component.TCRMPersonBObj"/>				
+			<entry key="converter.type" value="eme.matching.converter"/>
+		</service-properties>
+		<bean class="com.ibm.mdm.common.converter.ConverterFactoryServiceImpl">
+			<argument ref="blueprintBundle"/>
+			<argument value="com.test.pme.extrules.PersonDerivedDataConverter"/>					
+		</bean>
+	</service>
+	
+	<service id="ConverterFactoryService.PersonDerivedDataConverter.Search" interface="com.ibm.mdm.common.converter.ConverterFactoryService" ranking="10">
+		 <service-properties>
+			<entry key="object.to.convert">
+				<list>
+                  <value>com.dwl.tcrm.coreParty.component.TCRMPersonBObj</value>
+                  <value>com.dwl.tcrm.coreParty.component.ProbabilisticPersonSearchBObj</value>                                
+				</list>
+			</entry>					
+			<entry key="converter.type" value="eme.searchSuspects.converter"/>
+		</service-properties>
+		<bean class="com.ibm.mdm.common.converter.ConverterFactoryServiceImpl">
+			<argument ref="blueprintBundle"/>
+			<argument value="com.test.pme.extrules.PersonDerivedDataConverter"/>					
+		</bean>
+	</service>
+	
+	<service id="ConverterFactoryService.PersonDerivedDataConverter.Sync" interface="com.ibm.mdm.common.converter.ConverterFactoryService" ranking="10">
+		 <service-properties>
+			<entry key="object.to.convert">
+				<list>
+                  <value>com.dwl.tcrm.coreParty.component.TCRMPersonBObj</value>                               
+				</list>
+			</entry>					
+			<entry key="converter.type" value="synchronization.eme.converter"/>
+		</service-properties>
+		<bean class="com.ibm.mdm.common.converter.ConverterFactoryServiceImpl">
+			<argument ref="blueprintBundle"/>
+			<argument value="com.test.pme.extrules.PersonDerivedDataConverter"/>					
+		</bean>
+	</service>
+    
+</blueprint>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	The following source code ("Code") may only be used in accordance with the terms
+	and conditions of the license agreement you have with IBM Corporation. The Code 
+	is provided to you on an "AS IS" basis, without warranty of any kind.  
+	SUBJECT TO ANY STATUTORY WARRANTIES WHICH CAN NOT BE EXCLUDED, IBM MAKES NO 
+	WARRANTIES OR CONDITIONS EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+	TO, THE IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A 
+	PARTICULAR PURPOSE, AND NON-INFRINGEMENT, REGARDING THE CODE. IN NO EVENT WILL 
+	IBM BE LIABLE TO YOU OR ANY PARTY FOR ANY DIRECT, INDIRECT, SPECIAL OR OTHER 
+	CONSEQUENTIAL DAMAGES FOR ANY USE OF THE CODE, INCLUDING, WITHOUT LIMITATION, 
+	LOSS OF, OR DAMAGE TO, DATA, OR LOST PROFITS, BUSINESS, REVENUE, GOODWILL, OR 
+	ANTICIPATED SAVINGS, EVEN IF IBM HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH 
+	DAMAGES. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF 
+	INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY 
+	NOT APPLY TO YOU.
+-->
+
+<!--
+	IBM-MDMWB-1.0-[baa967a13d480fc43c4be86d098c12b8]
+-->
+
+<TCRMService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns="http://www.ibm.com/mdm/schema" xsi:schemaLocation="http://www.ibm.com/mdm/schema MDMDomains.xsd">
+    <RequestControl>
+        <requestID>10015</requestID>
+        <DWLControl>
+            <requesterName>cusadmin</requesterName>
+            <requesterLanguage>100</requesterLanguage>
+        </DWLControl>
+    </RequestControl>
+    <TCRMTx>
+        <TCRMTxType>updateCreditInfo</TCRMTxType>
+        <TCRMTxObject>CreditInfoBObj</TCRMTxObject>
+        <TCRMObject>
+              <CreditInfoBObj>
+                 <ObjectReferenceId></ObjectReferenceId>
+                 <CreditInfopkId>634344349404198652</CreditInfopkId>
+                 <PartyId>639944349404142388</PartyId>
+                 <CreditScore>800</CreditScore>
+                 <CreditClass>AAAA</CreditClass>
+                 <CreditStatus>Great</CreditStatus>
+                 <CreditInfoLastUpdateDate>2015-09-28 22:34:01.985</CreditInfoLastUpdateDate>
+                 <CreditInfoLastUpdateUser>mdmadmin</CreditInfoLastUpdateUser>
+                 <CreditInfoLastUpdateTxId>407544349403925116</CreditInfoLastUpdateTxId>
+              </CreditInfoBObj>
+        </TCRMObject>
+    </TCRMTx>
+</TCRMService>
+
